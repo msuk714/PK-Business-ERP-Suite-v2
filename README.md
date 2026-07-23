@@ -1,7 +1,7 @@
 # PK Business ERP Suite
 
 ## Version 2.0
-
+ 
 A fully clickable, browser-based Business ERP demo built with Next.js, React, TypeScript, CSS, JavaScript behavior and LocalStorage. No backend is required.
 
 ### Included business modules
