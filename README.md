@@ -1,33 +1,29 @@
-# PK Business ERP Suite
+# PK Business ERP Suite — Version 2.0 BRD Demo
 
-## Version 2.0
- 
-A fully clickable, browser-based Business ERP demo built with Next.js, React, TypeScript, CSS, JavaScript behavior and LocalStorage. No backend is required.
+A clickable, browser-based ERP demonstration built by upgrading the existing Version 1 project. It preserves the original visual language and single-page Next.js structure while implementing the approved BRD workflows with realistic LocalStorage data.
 
-### Included business modules
+## Demo accounts
 
-- Main Dashboard with sales, expenses, profit, collection, cash/credit, outstanding credit, inventory, low stock, recent activity, quick actions, notifications and monthly charts.
-- Feed Unit: partners, investments, suppliers, raw material purchase/inventory, formulas, production batches, cost, finished goods, bags, sales, customers, expenses, staff, salary, reports and settings.
-- Chakki: separate Grinding Service and company Flour Bag Production/Sales businesses.
-- Petrol Pump: fuel purchase, tank stock, Machine 1/2 readings, automatic fuel sold calculation, customers, cash/credit/temporary credit, expenses, salary, reports and closings.
-- Super Store: products, categories, suppliers, purchase, returns, inventory, cash/credit sales, customers, expenses and reports.
-- Gas Management: products, purchase, stock, sales, customers, expenses and reports.
-- Cash Book: opening balance, cash received, cash paid, expenses, closing balance, daily closing and monthly closing.
-- Common modules: activity logs, notifications, backup, restore, settings, users, roles and permissions.
-- Reports: daily, monthly and yearly sales, expenses, profit, inventory, customer ledger, supplier ledger and cash book.
-- Print previews: invoices, receipts, grinding receipts, fuel reports, monthly reports, expense reports, salary receipts and closing reports.
+| Role | Email | Password | Example access |
+|---|---|---|---|
+| Admin | `admin@demo.com` | `admin123` | Full system and settings |
+| Manager | `manager@demo.com` | `manager123` | Feed, Chakki and Petrol operational access |
+| Operator | `operator@demo.com` | `operator123` | Petrol Pump and Super Store data entry |
+| Staff | `staff@demo.com` | `staff123` | Limited operational entry |
+| Viewer | `viewer@demo.com` | `viewer123` | Read-only dashboards and reports |
 
-### Demo logins
+## Implemented business systems
 
-Admin:
-- Email: `admin@demo.com`
-- Password: `admin123`
+- Main ERP Dashboard with combined KPIs, business quick-access cards, notifications, low-stock items, recent activity, top products/customers, quick actions and monthly sales/expense/profit charts.
+- Feed Unit: partners, investment/withdrawals, supplier ledger, raw-material purchasing and returns, formulas, batch production, ingredient consumption, traceability, finished goods/bags, bag sales, customer ledger, expenses and reports.
+- Chakki: separate Grinding Service and company-owned Flour Bag Production/Sales. Customer wheat is never added to company inventory.
+- Petrol Pump: fuel purchases/returns, tank stock, machine readings, rollover handling, automatic fuel-sold calculation, fuel-rate history, customer/supplier ledgers and reports.
+- Super Store: products/categories, purchase and purchase return, automatic inventory, cash/credit sales, customer/supplier ledgers, expenses and reports.
+- Gas Management: cylinder types, purchases/returns, automatic stock, cash/credit sales, customer/supplier ledgers, expenses and reports.
+- Cash Book: cash received/paid/expenses, daily closing, monthly closing, record locking, Admin reopen reason and Feed Unit partner profit sharing.
+- Common features: staff/salary, five roles, business-scoped access, permissions matrix, activity/audit logs, notifications, backup/restore, dark mode, print preview and CSV export.
 
-Staff:
-- Email: `staff@demo.com`
-- Password: `staff123`
-
-### Run locally
+## Local development
 
 ```bash
 npm install
@@ -36,20 +32,35 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-### Production build
+## Production verification
 
 ```bash
 npm run build
 npm start
 ```
 
-### Deploy on GitHub and Vercel
+## Vercel deployment
 
-1. Push the complete project folder to GitHub.
-2. Import the repository in Vercel.
-3. Vercel detects Next.js automatically.
-4. Deploy without environment variables.
+1. Push the complete folder to a GitHub repository.
+2. In Vercel, select **Add New → Project** and import that repository.
+3. Framework preset: **Next.js**.
+4. Keep build command `npm run build` and output settings at the Vercel defaults.
+5. Deploy.
 
-### Data storage
+No environment variables or backend services are required for this clickable demonstration. All records are stored in the current browser's LocalStorage.
 
-All records are saved in browser LocalStorage under `pk-erp-v2-data`. Existing Version 1 partner and staff LocalStorage records are imported automatically the first time Version 2 loads. Backup exports a complete JSON file; Restore imports the JSON back into the current browser.
+## Demo data warning
+
+This is a client demonstration, not the final production backend. Data is browser-specific and can be reset, exported as JSON, and restored from the Settings module. Production implementation should replace LocalStorage credentials and records with a secured database/API and server-side authentication.
+
+
+## Vercel build fix (Version 2.0.1)
+
+The deployment entrypoint is intentionally small:
+
+- `app/page.jsx` — route entrypoint only
+- `app/erp-client.jsx` — complete clickable ERP client application
+- `app/layout.jsx` — root layout
+- `app/globals.css` — existing ERP styles
+
+This structure prevents the TSX parser error previously reported around `app/page.tsx` during Vercel compilation. There are no Git merge-conflict markers in the project files.

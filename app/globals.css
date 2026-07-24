@@ -223,3 +223,68 @@ tr:last-child td { border-bottom: 0; }
   table { min-width: 0; }
   th, td { padding: 7px; font-size: 10px; }
 }
+
+/* Version 2.0 BRD additions — follows the existing design language */
+.chart-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.metric-chart { min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 16px; box-shadow: 0 10px 25px rgba(23, 32, 51, 0.04); }
+.metric-chart h3 { margin: 0 0 10px; font-size: 15px; }
+.compact-chart { min-height: 220px; grid-template-columns: repeat(6, minmax(52px, 1fr)); gap: 9px; padding-top: 10px; }
+.compact-chart .bar-column { min-width: 52px; grid-template-rows: 24px 155px 20px; }
+.compact-chart .bar-track { height: 155px; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.primary-btn.mini, .danger-btn.mini { padding: 7px 10px; font-size: 12px; }
+.business-access-grid, .permission-checkboxes { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.demo-guide { display: grid; gap: 18px; }
+.demo-guide ol { margin: 0; padding-left: 22px; display: grid; gap: 10px; line-height: 1.55; }
+.demo-credential-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.demo-credential-grid > div { display: grid; gap: 5px; border: 1px solid var(--line); border-radius: 14px; padding: 12px; background: #f8fafc; }
+.demo-credential-grid span { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.demo-credential-grid code { color: var(--primary); font-weight: 800; }
+
+.dark-mode {
+  --bg: #101827;
+  --panel: #172033;
+  --ink: #f4f7fb;
+  --muted: #aab4c5;
+  --line: #2d394e;
+  --soft: #1f3153;
+  background: var(--bg);
+  color: var(--ink);
+}
+.dark-mode .sidebar,
+.dark-mode .notification-button,
+.dark-mode .user-chip,
+.dark-mode .business-cards button,
+.dark-mode .module-tabs button,
+.dark-mode table,
+.dark-mode .workflow,
+.dark-mode .login-form input,
+.dark-mode .form-grid input,
+.dark-mode .form-grid select,
+.dark-mode .date-filter,
+.dark-mode .report-filters input,
+.dark-mode .report-filters select,
+.dark-mode .filter-control select,
+.dark-mode .table-search { background: var(--panel); color: var(--ink); }
+.dark-mode th { background: #1f293b; color: #d9e1ee; }
+.dark-mode .sidebar nav button { color: #d9e1ee; }
+.dark-mode .sidebar nav button:hover,
+.dark-mode .feature-list span,
+.dark-mode .settings-summary span,
+.dark-mode .locked,
+.dark-mode .permission-grid .denied,
+.dark-mode .demo-credential-grid > div { background: #1f293b; color: #d9e1ee; }
+.dark-mode .checkbox-field,
+.dark-mode .report-filters label,
+.dark-mode .login-form label { color: #d9e1ee; }
+.dark-mode .bar-track { background: #263246; }
+
+@media (max-width: 1200px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .demo-credential-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .business-access-grid, .permission-checkboxes, .demo-credential-grid { grid-template-columns: 1fr; }
+  .row-actions { width: 100%; }
+  .row-actions > button { flex: 1 1 auto; }
+}
